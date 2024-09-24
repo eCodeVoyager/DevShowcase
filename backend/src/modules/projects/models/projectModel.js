@@ -13,7 +13,12 @@ const ProjectSchema = new mongoose.Schema(
       type: String,
     },
     features: {
-      type: [String],
+      type: [
+        {
+          title: String,
+          description: String,
+        },
+      ],
     },
     tech_stack: {
       type: [String],
@@ -30,6 +35,9 @@ const ProjectSchema = new mongoose.Schema(
     video: {
       type: String,
     },
+    category: {
+      type: String,
+    },
     tags: {
       type: [String],
     },
@@ -42,5 +50,7 @@ const ProjectSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+
 
 module.exports = mongoose.model("Project", ProjectSchema);
