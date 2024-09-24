@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&family=Syne:wght@400..800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-OpenSans text-foreground bg-background;
+  }
+}
+:root {
+  --background: #e9efec;
+  --background-muted: #c4dad2;
+  --background-dark: #3c3d37;
+  --foreground: #252525;
+  --foreground-muted: #6b6b6b;
+  --primary: #6a9c89;
+  --primary-dark: #16423c;
+}
