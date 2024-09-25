@@ -22,7 +22,7 @@
 .form {
   border-right: rem(1px) solid
     light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-7));
-  max-width: rem(450px);
+  max-width: rem(500px);
   @media (max-width: $mantine-breakpoint-sm) {
     max-width: 100%;
   }

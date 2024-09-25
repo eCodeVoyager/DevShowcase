@@ -5,5 +5,6 @@ export const routeNames = {
   profile: "/:userId",
   login: "/login",
   register: "/register",
+  verify: "/verify",
   forgotPassword: "/reset-password",
 };

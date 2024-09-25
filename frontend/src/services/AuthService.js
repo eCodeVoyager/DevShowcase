@@ -1,24 +1,21 @@
 import requests from "./httpRequest";
 
-const AuthSearvice = {
-  sendOtpEmail: async (body) => {
-    return requests.post("/auth/send-otp/email", body);
+const AuthService = {
+  registerUser: async (body) => {
+    return requests.post("/auth/register", body);
   },
-  sendOtpPhone: async (body) => {
-    return requests.post("/auth/send-otp/phone", body);
+  sendVerifyOtp: async (body) => {
+    return requests.post("/auth/send-verify-otp", body);
   },
-  verifyOtp: async (body) => {
-    return requests.post("/auth/verify-otp", body);
+  login: async (body) => {
+    return requests.post("/auth/login", body);
   },
   setPassword: async (body) => {
     return requests.post("/auth/set-password", body);
-  },
-  loginWithPass: async (body) => {
-    return requests.post("/auth/login", body);
   },
   me: async () => {
     return requests.get("/auth/me");
   },
 };
 
-export default AuthSearvice;
+export default AuthService;

@@ -8,6 +8,7 @@ import RequireAuth from "./Layouts/AuthRequire";
 import Dashboard from "./pages/Dashboard";
 import { NotFoundImage } from "./pages/NotFound";
 import ForgotPassword from "./pages/Auth/ResetPassword";
+import OtpVerification from "./pages/Auth/Verify";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route path={routeNames.profile} element={<Profile />} />
           <Route path={routeNames.login} element={<Login />} />
           <Route path={routeNames.register} element={<Register />} />
+          <Route path={routeNames.verify} element={<OtpVerification />} />
           <Route
             path={routeNames.forgotPassword}
             element={<ForgotPassword />}
