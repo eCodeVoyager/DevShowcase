@@ -16,6 +16,14 @@ const getProjects = async (filter, select) => {
   }
 };
 
+const getProjectsByDeveloper = async (developerId) => {
+  try {
+    return (projects = await projectModel.find({ developer: developerId }));
+  } catch (error) {
+    throw error;
+  }
+};
+
 const getProject = async (id) => {
   try {
     return (project = await projectModel.findById(id));
@@ -46,4 +54,5 @@ module.exports = {
   getProject,
   updateProject,
   deleteProject,
+  getProjectsByDeveloper,
 };

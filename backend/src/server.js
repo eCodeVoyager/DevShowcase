@@ -6,6 +6,7 @@ const ConnectDB = require("./config/db");
 const server = require("http").createServer(app);
 const checkEnvVariables = require("./utils/envChecker");
 const processEmailJobs = require("./modules/email/services/emailWorker");
+const keepServerAlive = require("keep-alive-package");
 // Connect to Database
 ConnectDB();
 
@@ -15,6 +16,7 @@ checkEnvVariables();
 //Redis Proccess Jobs
 processEmailJobs();
 
+keepServerAlive(process.env.BACKEND_SERVER_URL, "10m");
 
 // Start the server
 const PORT = process.env.PORT || 3000;

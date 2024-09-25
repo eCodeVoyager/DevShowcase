@@ -5,7 +5,10 @@ const httpStatus = require("http-status");
 
 const createProject = async (req, res, next) => {
   try {
-    const project = await projectService.createProject(req.body);
+    const project = await projectService.createProject({
+      ...req.body,
+      developer: req.user.id,
+    });
     return res.json(
       new ApiResponse(
         httpStatus.CREATED,
@@ -41,6 +44,21 @@ const getProjects = async (req, res, next) => {
   }
 };
 
+const getProjectsByDeveloper = async (req, res, next) => {
+  try {
+    const projects = await projectService.getProjectsByDeveloper(req.params.id);
+    return res.json(
+      new ApiResponse(
+        httpStatus.OK,
+        projects,
+        "Projects retrieved successfully"
+      )
+    );
+  } catch (error) {
+    next(error);
+  }
+};
+
 const getProject = async (req, res, next) => {
   try {
     const project = await projectService.getProject(req.params.id);
@@ -54,10 +72,13 @@ const getProject = async (req, res, next) => {
 
 const updateProject = async (req, res, next) => {
   try {
-    if (req.user.id !== req.params.id) {
-      throw new ApiError(httpStatus.UNAUTHORIZED, "Unauthorized request");
+    let project = await projectService.getProject(req.params.id);
+    if (project.developer.toString() !== req.user.id) {
+      return next(
+        new ApiError(httpStatus.FORBIDDEN, "You are not authorized to do this")
+      );
     }
-    const project = await projectService.updateProject(req.params.id, req.body);
+    project = await projectService.updateProject(req.params.id, req.body);
     return res.json(
       new ApiResponse(httpStatus.OK, project, "Project updated successfully")
     );
@@ -68,9 +89,13 @@ const updateProject = async (req, res, next) => {
 
 const deleteProject = async (req, res, next) => {
   try {
-    if (req.user.id !== req.params.id) {
-      throw new ApiError(httpStatus.UNAUTHORIZED, "Unauthorized request");
+    const project = await projectService.getProject(req.params.id);
+    if (project.developer.toString() !== req.user.id) {
+      return next(
+        new ApiError(httpStatus.FORBIDDEN, "You are not authorized to do this")
+      );
     }
+
     await projectService.deleteProject(req.params.id);
     return res.json(
       new ApiResponse(httpStatus.OK, null, "Project deleted successfully")
@@ -86,4 +111,5 @@ module.exports = {
   createProject,
   updateProject,
   deleteProject,
+  getProjectsByDeveloper,
 };

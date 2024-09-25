@@ -10,7 +10,6 @@ const redis = require("./config/redis");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const rateLimit = require("express-rate-limit");
-const keepServerAlive = require("keep-alive-package");
 const mongoSanitize = require("express-mongo-sanitize");
 
 // Import routes and middlewares
@@ -22,7 +21,6 @@ const { errorHandler, notFoundHandler } = require("./utils/errorHandler");
 const app = express();
 
 // Keep server alive
-keepServerAlive(process.env.BACKEND_SERVER_URL, "10m");
 
 //Middlewares
 const allMiddlewares = [
