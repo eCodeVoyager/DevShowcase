@@ -20,13 +20,13 @@ import { routeNames } from "../../../../routes/route.data";
 export default function ForgotPassword() {
   return (
     <div className={classesTwo.wrapper}>
-      <Paper className={classes.form} radius={0} p={30}>
+      <Paper className={classes.form} radius={12} p={30}>
         <Container size={460} my={30}>
           <Title className={classes.title} ta="center">
             Forgot your password?
           </Title>
           <Text c="dimmed" fz="sm" ta="center">
-            Enter your email to get a reset link
+            Enter your email to get a OTP.
           </Text>
 
           <Paper withBorder shadow="md" p={30} radius="md" mt="xl">

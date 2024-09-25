@@ -14,7 +14,7 @@ import { routeNames } from "../../../../routes/route.data";
 export default function AuthenticationImage() {
   return (
     <div className={classes.wrapper}>
-      <Paper className={classes.form} radius={0} p={30}>
+      <Paper className={classes.form} radius={12} p={30}>
         <Title order={2} className={classes.title} ta="center" mt="md" mb={50}>
           Welcome back to DevShowCase!
         </Title>

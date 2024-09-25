@@ -11,6 +11,7 @@ createRoot(document.getElementById("root")).render(
       theme={{
         black: "#252525",
       }}
+      defaultColorScheme="dark"
     >
       <App />
     </MantineProvider>

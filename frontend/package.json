@@ -18,6 +18,7 @@
     "@mantine/hooks": "^7.12.2",
     "@mantine/modals": "^7.12.2",
     "@tabler/icons-react": "^3.17.0",
+    "axios": "^1.7.7",
     "dayjs": "^1.11.13",
     "embla-carousel-react": "^8.3.0",
     "js-cookie": "^3.0.5",
