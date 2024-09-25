@@ -6,6 +6,8 @@ import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import RequireAuth from "./Layouts/AuthRequire";
 import Dashboard from "./pages/Dashboard";
+import { NotFoundImage } from "./pages/NotFound";
+import ForgotPassword from "./pages/Auth/ResetPassword";
 
 const App = () => {
   return (
@@ -13,14 +15,19 @@ const App = () => {
       <Routes>
         <Route path="/">
           {/* public routes */}
-          <Route path={routeNames.welcome} element={<Home />} />
+          <Route path={routeNames.home} element={<Home />} />
           <Route path={routeNames.profile} element={<Profile />} />
           <Route path={routeNames.login} element={<Login />} />
           <Route path={routeNames.register} element={<Register />} />
+          <Route
+            path={routeNames.forgotPassword}
+            element={<ForgotPassword />}
+          />
           {/* projected routes */}
           <Route element={<RequireAuth />}>
             <Route path={routeNames.dashboard} element={<Dashboard />} />
           </Route>
+          <Route path="*" element={<NotFoundImage />} />
         </Route>
       </Routes>
     </BrowserRouter>

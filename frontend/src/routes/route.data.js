@@ -1,8 +1,9 @@
 export const routeNames = {
   home: "/",
   welcome: "/welcome",
-  login: "/login",
-  register: "/register",
   dashboard: "/dashboard",
   profile: "/:userId",
+  login: "/login",
+  register: "/register",
+  forgotPassword: "/reset-password",
 };

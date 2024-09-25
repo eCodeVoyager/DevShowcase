@@ -6,7 +6,7 @@
 
 @layer base {
   body {
-    @apply font-OpenSans text-foreground bg-background;
+    @apply font-OpenSans !text-foreground bg-background;
   }
 }
 :root {
