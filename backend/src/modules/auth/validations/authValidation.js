@@ -37,7 +37,8 @@ const forgotPassword = {
 };
 const forgotPasswordVerify = {
   body: Joi.object().keys({
-    OTP: Joi.number().required(),
+    otp: Joi.number().required(),
+    email: Joi.string().email().required(),
     password: Joi.string().required(),
   }),
 };

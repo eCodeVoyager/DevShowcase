@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevShowcase - Verify OTP</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 20px;
+        color: #252525;
+      }
+      .email-container {
+        max-width: 600px;
+        margin: 20px auto;
+        background-color: #ffffff;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+      .email-header {
+        background-color: #c4dad2;
+        padding: 30px;
+        text-align: center;
+      }
+      .email-body {
+        padding: 40px 30px;
+        text-align: center;
+        position: relative;
+      }
+      .email-body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        background: linear-gradient(
+            45deg,
+            #c4dad2 25%,
+            transparent 25%,
+            transparent 75%,
+            #c4dad2 75%,
+            #c4dad2
+          ),
+          linear-gradient(
+            45deg,
+            #c4dad2 25%,
+            transparent 25%,
+            transparent 75%,
+            #c4dad2 75%,
+            #c4dad2
+          );
+        background-size: 20px 20px;
+        background-position: 0 0, 10px 10px;
+        opacity: 0.1;
+        z-index: -1;
+      }
+      .email-footer {
+        background-color: #f9f9f9;
+        padding: 20px;
+        text-align: center;
+        font-size: 12px;
+        color: #666;
+      }
+      h1 {
+        color: #252525;
+        margin: 0;
+        font-size: 28px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      .otp-container {
+        background-color: #252525;
+        padding: 20px;
+        border-radius: 10px;
+        font-size: 36px;
+        letter-spacing: 12px;
+        text-align: center;
+        margin: 30px 0;
+        color: #c4dad2;
+        font-weight: bold;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+      .icon {
+        font-size: 72px;
+        margin-bottom: 20px;
+      }
+      .message {
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="email-container">
+      <div class="email-header">
+        <h1>DevShowcase</h1>
+      </div>
+      <div class="email-body">
+        <div class="icon">✉️</div>
+        <h2>Verify Your Email</h2>
+        <p class="message">
+          Welcome to DevShowcase! Please use the following OTP to verify your
+          email address:
+        </p>
+        <div class="otp-container">{{ otp }}</div>
+        <p class="message">
+          This OTP will expire in 1 hour. If you didn't create an account,
+          please disregard this email.
+        </p>
+      </div>
+      <div class="email-footer">
+        &copy; 2024 DevShowcase. All rights reserved. |
+        <a href="#" style="color: #252525">Privacy Policy</a> |
+        <a href="#" style="color: #252525">Terms of Service</a>
+      </div>
+    </div>
+  </body>
+</html>

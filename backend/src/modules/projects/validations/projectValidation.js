@@ -19,6 +19,7 @@ const createProject = {
     live_url: joi.string().uri(),
     tags: joi.array().items(joi.string()),
     is_featured: joi.boolean(),
+    is_public: joi.boolean(),
     category: joi.string().required(),
   }),
 };
@@ -49,6 +50,7 @@ const updateProject = {
     live_url: joi.string().uri(),
     tags: joi.array().items(joi.string()),
     is_featured: joi.boolean(),
+    is_public: joi.boolean(),
     category: joi.string(),
   }),
 };

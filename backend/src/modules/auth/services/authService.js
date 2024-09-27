@@ -30,66 +30,44 @@ const loginByEmail = async (credentials) => {
       { email: credentials.email },
       "+password"
     );
-    await user[0].isPasswordMatch(credentials.password);
-
     return user[0];
   } catch (error) {
     throw error;
   }
 };
 
-const changePassword = async (id, oldPassword, newPassword) => {
+const changePassword = async (userEmail) => {
   try {
-    let getUser = await userService.getUnprotectedUser(id);
-    if (!getUser) {
-      throw new ApiError(httpStatus.NOT_FOUND, "User not found");
-    }
-    const result = await getUser.changePassword(oldPassword, newPassword);
-    if (result === false) {
-      throw new ApiError(httpStatus.BAD_REQUEST, "Incorrect old password");
-    }
-
-    return getUser;
+    const user = await userService.getUsers({ email: userEmail }, "+password");
+    return user[0];
   } catch (error) {
     throw error;
   }
 };
+
 const sendForgotPasswordEmail = async (user, otp) => {
   try {
-    const otpInfo = await otpModel.create({ otp: otp, userId: user._id });
-    user.forgotPasswordOTP = otpInfo._id;
-    await user.save();
-
-    return otpInfo;
+    await otpModel.create({
+      userId: user._id,
+      otp,
+    });
   } catch (error) {
     throw error;
   }
 };
 
-const forgotPassword = async (body) => {
+const forgotPassword = async (user, otp) => {
   try {
-    const { password, otp } = body;
-    const otpInfo = await otpModel.findOne({ otp: otp }).populate("userId");
-
-    if (!otpInfo) {
-      throw new ApiError(httpStatus.BAD_REQUEST, "Invalid OTP ");
+    const otpData = await otpModel.findOne({ userId: user._id, otp });
+    if (!otpData) {
+      throw new ApiError(httpStatus.BAD_REQUEST, "Invalid OTP");
     }
-
-    const user = otpInfo.userId;
-
-    if (!user) {
-      throw new ApiError(404, "User not found"); // Throw error if user is not found
-    }
-
-    await user.forgotPassword(password);
-    await otpModel.findByIdAndDelete(otpInfo._id);
-
-    return user;
+   
+    await otpModel.deleteOne({ userId: user._id, otp });
   } catch (error) {
     throw error;
   }
 };
-
 module.exports = {
   register,
   loginByEmail,

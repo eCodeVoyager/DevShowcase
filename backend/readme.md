@@ -1,137 +1,69 @@
-# 🌟 Node-Express Boilerplate 🌟
+# DevShowcase 🚀
 
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
-![Mongoose](https://img.shields.io/badge/Mongoose-880000?style=for-the-badge&logo=mongoose&logoColor=white)
+Empowering developers to showcase their projects, connect with peers, and discover inspiring work worldwide! 🌍✨
 
-A comprehensive Node.js and Express.js boilerplate for building scalable and maintainable web applications.
+## Features 🌟
 
-## 📜 Table of Contents
+- 🔐 User authentication & profiles
+- 📤 Project uploads & showcases
+- 🔍 Discover & explore projects
+- 💬 Comments & feedback system
+- 🤝 Developer networking
 
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Project Structure](#-project-structure)
-- [Installation](#-installation)
-- [Available Routes](#-available-routes)
-- [Usage](#-usage)
-- [Contributing](#-contributing)
-- [License](#-license)
+## Quick Start 🏁
 
-## ✨ Features
+### Installation 🛠️
 
-- Modular architecture with feature-based structure
-- User authentication and authorization
-- JWT-based secure authentication
-- MongoDB integration using Mongoose
-- Centralized error handling
-- Middleware for validation and error handling
-- Environment-based configuration
-- Scalable and maintainable codebase
-
-## 🚀 Tech Stack
-
-- **Node.js** - JavaScript runtime
-- **Express.js** - Web framework for Node.js
-- **MongoDB** - NoSQL database
-- **Mongoose** - MongoDB object modeling for Node.js
-- **JWT** - JSON Web Token for authentication
-- **Day.js** - Lightweight JavaScript date library
-
-## 🏗️ Project Structure
-
-```plaintext
-/src
-├── modules
-│   ├── users
-│   │   ├── controllers
-│   │   │   └── userController.js
-│   │   ├── models
-│   │   │   └── userModel.js
-│   │   ├── routes
-│   │   │   └── userRoutes.js
-│   │   ├── services
-│   │   │   └── userService.js
-│   │   └── index.js
-│   │
-│   ├── auth
-│   │   ├── controllers
-│   │   │   └── authController.js
-│   │   ├── models
-│   │   │   └── authModel.js
-│   │   ├── routes
-│   │   │   └── authRoutes.js
-│   │   ├── services
-│   │   │   └── authService.js
-│   │   └── index.js
-│   └── index.js
-├── config
-│   └── db.js
-│
-├── middleware
-│   └── authMiddleware.js
-├── utils
-│   └── errorHandler.js
-├── app.js
-├── index.js
-└── server.js
-
-
-```
-
-## 🛠️ Installation
-
-1. **Clone the repository:**
-
-   ```sh
-   git clone https://github.com/nur-it/express-js-boilerplate.git
-   cd express-js-boilerplate
+1. Clone & install:
    ```
-
-2. **Install backend dependencies:**
-
-   ```sh
+   git clone https://github.com/ecodevoyager/devshowcase.git
+   cd devshowcase
    npm install
    ```
 
-3. **Set up environment variables:**
-   Create a `.env` file in the `backend` directory and add your MongoDB URI and JWT secret:
+2. Set up env:
+   ```
+   cp example.env .env
+   ```
+   Edit `.env` with your config.
 
-   ```plaintext
-   MONGODB_URI=your_mongo_URI
-   JWT_SECRET=your_jwt_secret
-   PORT=  your_app_port
+3. Start development:
+   ```
+   npm run dev
    ```
 
-4. **Start the backend server:**
-   ```sh
-   npm start
-   ```
+## Environment Variables 🔐
 
-## 🌐 Available Routes
+Check `example.env` for required variables. Create `.env` in project root with appropriate values.
 
-### Users
+## API Docs 📚
 
-- **GET /api/v1/users**: Get all users
-- **POST /api/v1/users**: Create a new user
+Explore our API:
+[DevShowcase API Documentation](https://documenter.getpostman.com/view/your-postman-doc-id)
 
-### Auth
+## Frontend 🎨
 
-- **POST /api/v1/auth/login**: Login user
-- **POST /api/v1/auth/register**: Register a new user
+- React with React Router
+- Axios for API requests
+- Tailwind CSS for styling
 
-## 🤝 Contributing
+## Backend 🖥️
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/your-feature`)
-3. Commit your changes (`git commit -m 'Add your feature'`)
-4. Push to the branch (`git push origin feature/your-feature`)
-5. Open a Pull Request
+- Node.js & Express
+- MongoDB with Mongoose
+- Modular Monolith Architecture 🏗️
+  - Organized into feature-based modules
+  - Clear separation of concerns
+  - Easy to maintain and scale
 
-## 📄 License
+Key libraries:
+- Cloudinary (Manage media)
+- Multer (file uploads)
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## Collaborators 👥
 
----
 
-Happy coding! 🚀
+
+## License 📄
+
+MIT License - see [LICENSE](LICENSE) file.

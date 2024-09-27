@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevShowcase - Welcome</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 20px;
+        color: #252525;
+      }
+      .email-container {
+        max-width: 600px;
+        margin: 20px auto;
+        background-color: #ffffff;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+      .email-header {
+        background-color: #c4dad2;
+        padding: 40px 30px;
+        text-align: center;
+        position: relative;
+      }
+      .email-header::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 30px;
+        background: repeating-linear-gradient(
+          45deg,
+          #ffffff,
+          #ffffff 10px,
+          #c4dad2 10px,
+          #c4dad2 20px
+        );
+      }
+      .email-body {
+        padding: 40px 30px;
+        text-align: center;
+      }
+      .email-footer {
+        background-color: #252525;
+        padding: 20px;
+        text-align: center;
+        font-size: 12px;
+        color: #ffffff;
+      }
+      h1 {
+        color: #252525;
+        margin: 0;
+        font-size: 32px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+      }
+      .btn {
+        display: inline-block;
+        background-color: #252525;
+        color: #ffffff;
+        padding: 12px 25px;
+        text-decoration: none;
+        border-radius: 25px;
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 30px;
+        transition: background-color 0.3s ease;
+      }
+      .btn:hover {
+        background-color: #3a3a3a;
+      }
+      .icon {
+        font-size: 80px;
+        margin-bottom: 20px;
+      }
+      .message {
+        font-size: 18px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+      .feature-list {
+        text-align: left;
+        margin: 30px 0;
+        padding-left: 20px;
+      }
+      .feature-list li {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="email-container">
+      <div class="email-header">
+        <h1>DevShowcase</h1>
+      </div>
+      <div class="email-body">
+        <div class="icon">👋</div>
+        <h2>Welcome to DevShowcase!</h2>
+        <p class="message">
+          We're thrilled to have you on board. DevShowcase is the perfect
+          platform to host and showcase your development projects.
+        </p>
+        <ul class="feature-list">
+          <li>Upload and showcase unlimited projects</li>
+          <li>Connect with fellow developers</li>
+          <li>Receive feedback and collaborate</li>
+          <li>Discover inspiring projects from around the world</li>
+        </ul>
+        <p class="message">Ready to make your mark in the dev world?</p>
+        <a href="{{UploadProjectURL}}" class="btn">Upload Your First Project</a>
+      </div>
+      <div class="email-footer">
+        &copy; 2024 DevShowcase. All rights reserved. |
+        <a href="#" style="color: #c4dad2">Privacy Policy</a> |
+        <a href="#" style="color: #c4dad2">Terms of Service</a>
+      </div>
+    </div>
+  </body>
+</html>

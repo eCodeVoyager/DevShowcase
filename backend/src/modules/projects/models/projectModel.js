@@ -45,12 +45,14 @@ const ProjectSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    is_public: {
+      type: Boolean,
+      default: true,
+    },
   },
   {
     timestamps: true,
   }
 );
-
-
 
 module.exports = mongoose.model("Project", ProjectSchema);

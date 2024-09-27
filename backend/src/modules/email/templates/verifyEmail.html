@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevShowcase - Email Verified</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 20px;
+        color: #252525;
+      }
+      .email-container {
+        max-width: 600px;
+        margin: 20px auto;
+        background-color: #ffffff;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+      .email-header {
+        background-color: #c4dad2;
+        padding: 30px;
+        text-align: center;
+        position: relative;
+      }
+      .email-header::before {
+        content: "✓";
+        font-size: 120px;
+        color: rgba(255, 255, 255, 0.2);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .email-body {
+        padding: 40px 30px;
+        text-align: center;
+      }
+      .email-footer {
+        background-color: #252525;
+        padding: 20px;
+        text-align: center;
+        font-size: 12px;
+        color: #ffffff;
+      }
+      h1 {
+        color: #252525;
+        margin: 0;
+        font-size: 28px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        position: relative;
+        z-index: 1;
+      }
+      .btn {
+        display: inline-block;
+        background-color: #252525;
+        color: #ffffff;
+        padding: 12px 25px;
+        text-decoration: none;
+        border-radius: 25px;
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 30px;
+        transition: all 0.3s ease;
+      }
+      .btn:hover {
+        background-color: #c4dad2;
+        color: #252525;
+      }
+      .icon {
+        font-size: 72px;
+        margin-bottom: 20px;
+        color: #4caf50;
+      }
+      .message {
+        font-size: 18px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+      .confetti {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: #c4dad2;
+        opacity: 0.7;
+      }
+      .confetti:nth-child(1) {
+        top: 10%;
+        left: 10%;
+        transform: rotate(15deg);
+      }
+      .confetti:nth-child(2) {
+        top: 20%;
+        right: 20%;
+        transform: rotate(30deg);
+      }
+      .confetti:nth-child(3) {
+        bottom: 30%;
+        left: 30%;
+        transform: rotate(45deg);
+      }
+      .confetti:nth-child(4) {
+        bottom: 40%;
+        right: 40%;
+        transform: rotate(60deg);
+      }
+      .confetti:nth-child(5) {
+        top: 50%;
+        left: 50%;
+        transform: rotate(75deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="email-container">
+      <div class="confetti"></div>
+      <div class="confetti"></div>
+      <div class="confetti"></div>
+      <div class="confetti"></div>
+      <div class="confetti"></div>
+      <div class="email-header">
+        <h1>DevShowcase</h1>
+      </div>
+      <div class="email-body">
+        <div class="icon">✅</div>
+        <h2>Email Verified Successfully!</h2>
+        <p class="message">
+          Congratulations! Your email has been successfully verified. You now
+          have full access to all DevShowcase features.
+        </p>
+        <p class="message">
+          Get ready to showcase your incredible projects and connect with
+          developers from around the world!
+        </p>
+        <a href="{{BaseURL}}" class="btn">Start Exploring DevShowcase</a>
+      </div>
+      <div class="email-footer">
+        &copy; 2024 DevShowcase. All rights reserved. |
+        <a href="#" style="color: #c4dad2">Privacy Policy</a> |
+        <a href="#" style="color: #c4dad2">Terms of Service</a>
+      </div>
+    </div>
+  </body>
+</html>

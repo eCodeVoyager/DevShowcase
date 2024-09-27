@@ -36,17 +36,6 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    verificationOTP: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "OTP",
-      select: false,
-    },
-    forgotPasswordOTP: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "OTP",
-      select: false,
-    },
-
     refreshToken: {
       type: String,
       select: false,
@@ -81,18 +70,6 @@ userSchema.pre("save", async function (next) {
   }
 });
 
-userSchema.methods.forgotPassword = async function (password) {
-  this.password = password;
-  this.forgotPasswordOTP = null;
-  await this.save();
-};
-
-userSchema.methods.verifyEmail = async function () {
-  this.isVerified = true;
-  this.verificationOTP = null;
-  await this.save();
-};
-
 userSchema.methods.changePassword = async function (oldPassword, newPassword) {
   const isValid = await this.isPasswordMatch(oldPassword);
   if (isValid === false) {
@@ -100,6 +77,7 @@ userSchema.methods.changePassword = async function (oldPassword, newPassword) {
   }
   this.password = newPassword;
   await this.save();
+  return true;
 };
 
 module.exports = mongoose.model("User", userSchema);

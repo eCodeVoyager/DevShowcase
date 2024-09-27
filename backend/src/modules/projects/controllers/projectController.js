@@ -2,13 +2,48 @@ const projectService = require("../services/projectService");
 const ApiResponse = require("../../../utils/apiResponse");
 const ApiError = require("../../../utils/apiError");
 const httpStatus = require("http-status");
+const cloudinaryUpload = require("../../../utils/uploadUtils");
 
 const createProject = async (req, res, next) => {
   try {
+    let imageUrls = [];
+    let videoUrl;
+
+    if (req.files && req.files.length > 0) {
+      const imageFiles = req.files.filter((file) =>
+        file.mimetype.startsWith("image/")
+      );
+      if (imageFiles.length > 0) {
+        const imageResults = await cloudinaryUpload.uploadMultipleFiles(
+          imageFiles,
+          {
+            resource_type: "image",
+          }
+        );
+        imageUrls = imageResults.map((result) => result.secure_url);
+      }
+
+      const videoFile = req.files.filter((file) =>
+        file.mimetype.startsWith("video/")
+      );
+      if (videoFile.length > 0) {
+        const videoResults = await cloudinaryUpload.uploadMultipleFiles(
+          videoFile,
+          {
+            resource_type: "video",
+          }
+        );
+        videoUrl = videoResults.map((result) => result.secure_url);
+      }
+    }
+
     const project = await projectService.createProject({
       ...req.body,
       developer: req.user.id,
+      images: imageUrls,
+      video: videoUrl[0],
     });
+
     return res.json(
       new ApiResponse(
         httpStatus.CREATED,
@@ -17,6 +52,7 @@ const createProject = async (req, res, next) => {
       )
     );
   } catch (error) {
+    console.log(error);
     next(error);
   }
 };
