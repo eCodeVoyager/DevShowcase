@@ -7,7 +7,6 @@ Empowering developers to showcase their projects, connect with peers, and discov
 - 🔐 User authentication & profiles
 - 📤 Project uploads & showcases
 - 🔍 Discover & explore projects
-- 💬 Comments & feedback system
 - 🤝 Developer networking
 
 ## Quick Start 🏁
@@ -16,7 +15,7 @@ Empowering developers to showcase their projects, connect with peers, and discov
 
 1. Clone & install:
    ```
-   git clone https://github.com/ecodevoyager/devshowcase.git
+   git clone https://github.com/eCodeVoyager/DevShowcase.git
    cd devshowcase
    npm install
    ```
@@ -26,8 +25,11 @@ Empowering developers to showcase their projects, connect with peers, and discov
    cp example.env .env
    ```
    Edit `.env` with your config.
-
-3. Start development:
+3. Create public/temp folder:
+   ```
+   mkdir src/public/temp
+   ```
+4. Start development:
    ```
    npm run dev
    ```
@@ -38,8 +40,10 @@ Check `example.env` for required variables. Create `.env` in project root with a
 
 ## API Docs 📚
 
-Explore our API:
-[DevShowcase API Documentation](https://documenter.getpostman.com/view/your-postman-doc-id)
+Explore our postman API collections:
+[Auth Collection](https://documenter.getpostman.com/view/32008492/2sAXqy2eZV)
+[Users Collection](https://documenter.getpostman.com/view/32008492/2sAXqy2edm)
+[Projects Collection](https://documenter.getpostman.com/view/32008492/2sAXqy2eZW)
 
 ## Frontend 🎨
 
