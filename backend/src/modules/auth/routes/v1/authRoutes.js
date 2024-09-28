@@ -34,6 +34,16 @@ router.post(
   validate(authValidation.forgotPasswordVerify),
   authController.forgotPassword
 );
+router.post(
+  "/verify-email",
+  validate(authValidation.forgotPassword),
+  authController.sendVerificationEmail
+);
+router.post(
+  "/verify-email-otp",
+  validate(authValidation.verifyEmail),
+  authController.verifyEmail
+);
 
 router.get("/me", authenticate, authController.loggedInUser);
 module.exports = router;

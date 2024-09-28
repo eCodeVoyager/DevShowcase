@@ -45,7 +45,7 @@ const changePassword = async (userEmail) => {
   }
 };
 
-const sendForgotPasswordEmail = async (user, otp) => {
+const saveOTP = async (user, otp) => {
   try {
     await otpModel.create({
       userId: user._id,
@@ -56,13 +56,13 @@ const sendForgotPasswordEmail = async (user, otp) => {
   }
 };
 
-const forgotPassword = async (user, otp) => {
+const verifyOTP = async (user, otp) => {
   try {
     const otpData = await otpModel.findOne({ userId: user._id, otp });
     if (!otpData) {
       throw new ApiError(httpStatus.BAD_REQUEST, "Invalid OTP");
     }
-   
+
     await otpModel.deleteOne({ userId: user._id, otp });
   } catch (error) {
     throw error;
@@ -72,6 +72,6 @@ module.exports = {
   register,
   loginByEmail,
   changePassword,
-  sendForgotPasswordEmail,
-  forgotPassword,
+  saveOTP,
+  verifyOTP,
 };

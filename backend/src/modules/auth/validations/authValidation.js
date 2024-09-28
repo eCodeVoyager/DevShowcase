@@ -51,16 +51,16 @@ const changePassword = {
 
 const verifyEmail = {
   body: Joi.object().keys({
-    OTP: Joi.number().required(),
+    email: Joi.string().email().required(),
+    otp: Joi.number().required(),
   }),
 };
-
 module.exports = {
   register,
   login,
   refreshTokens,
   forgotPassword,
   changePassword,
-  verifyEmail,
   forgotPasswordVerify,
+  verifyEmail,
 };

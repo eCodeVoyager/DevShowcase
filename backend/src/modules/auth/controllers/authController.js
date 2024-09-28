@@ -173,15 +173,14 @@ const changePassword = async (req, res, next) => {
 
 const sendForgotPasswordEmail = async (req, res, next) => {
   try {
-    const { email } = req.body;
-    let user = await userService.getUsers({ email: email });
+    let user = await userService.getUsers({ email: req.body.email });
     user = user[0];
     if (!user) {
       throw new ApiError(httpStatus.NOT_FOUND, "User not found");
     }
 
     const otp = otpGen();
-    await authService.sendForgotPasswordEmail(user, otp);
+    await authService.saveOTP(user, otp);
     await sendEmail(user.email, "Forgot Password", "forgotPassword", { otp });
 
     return res.json(
@@ -208,13 +207,60 @@ const forgotPassword = async (req, res, next) => {
     if (!user) {
       throw new ApiError(httpStatus.NOT_FOUND, "User not found");
     }
-    await authService.forgotPassword(user, req.body.otp);
+    await authService.verifyOTP(user, req.body.otp);
 
     user.password = req.body.password;
     await user.save();
 
     return res.json(
       new ApiResponse(httpStatus.OK, null, "Password reset successfully")
+    );
+  } catch (error) {
+    next(error);
+  }
+};
+
+const sendVerificationEmail = async (req, res, next) => {
+  try {
+    let user = await userService.getUsers({ email: req.body.email });
+    user = user[0];
+    if (!user) {
+      throw new ApiError(httpStatus.NOT_FOUND, "User not found");
+    }
+    if (user.isVerified === true) {
+      throw new ApiError(httpStatus.BAD_REQUEST, "Email already verified");
+    }
+    const otp = otpGen();
+    await authService.saveOTP(user, otp);
+    await sendEmail(user.email, "Please verify your email", "verifyEmailOTP", {
+      otp,
+    });
+
+    return res.json(
+      new ApiResponse(httpStatus.OK, null, "Email sent successfully")
+    );
+  } catch (error) {
+    next(error);
+    console.log(error);
+  }
+};
+
+const verifyEmail = async (req, res, next) => {
+  try {
+    let user = await userService.getUsers({ email: req.body.email });
+    user = user[0];
+    if (!user) {
+      throw new ApiError(httpStatus.NOT_FOUND, "User not found");
+    }
+    await authService.verifyOTP(user, req.body.otp);
+
+    user.isVerified = true;
+    await user.save();
+
+    await sendEmail(user.email, "Email verified", "emailVerified", {});
+
+    return res.json(
+      new ApiResponse(httpStatus.OK, null, "Email verified successfully")
     );
   } catch (error) {
     next(error);
@@ -241,4 +287,6 @@ module.exports = {
   sendForgotPasswordEmail,
   forgotPassword,
   loggedInUser,
+  sendVerificationEmail,
+  verifyEmail,
 };
