@@ -30,6 +30,11 @@ router.post(
   authController.sendForgotPasswordEmail
 );
 router.post(
+  "/forgot-password-verify-otp",
+  validate(authValidation.verifyForgotPasswordOTP),
+  authController.verifyForgotPasswordOTP
+);
+router.post(
   "/forgot-password-verify",
   validate(authValidation.forgotPasswordVerify),
   authController.forgotPassword

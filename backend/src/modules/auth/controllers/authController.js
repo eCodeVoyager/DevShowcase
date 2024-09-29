@@ -191,6 +191,23 @@ const sendForgotPasswordEmail = async (req, res, next) => {
     console.log(error);
   }
 };
+
+const verifyForgotPasswordOTP = async (req, res, next) => {
+  try {
+    let user = await userService.getUsers({ email: req.body.email });
+    user = user[0];
+    if (!user) {
+      throw new ApiError(httpStatus.NOT_FOUND, "User not found");
+    }
+    await authService.verifyOTP(user, req.body.otp);
+
+    return res.json(
+      new ApiResponse(httpStatus.OK, null, "OTP verified successfully")
+    );
+  } catch (error) {
+    next(error);
+  }
+};
 /**
  * Resets the password of the user with OTP.
  *  @param {Object} req - The request object.
@@ -207,7 +224,7 @@ const forgotPassword = async (req, res, next) => {
     if (!user) {
       throw new ApiError(httpStatus.NOT_FOUND, "User not found");
     }
-    await authService.verifyOTP(user, req.body.otp);
+    await authService.deleteOTP(user);
 
     user.password = req.body.password;
     await user.save();
@@ -289,4 +306,5 @@ module.exports = {
   loggedInUser,
   sendVerificationEmail,
   verifyEmail,
+  verifyForgotPasswordOTP,
 };
