@@ -35,11 +35,10 @@ const forgotPassword = {
     email: Joi.string().email().required(),
   }),
 };
-const forgotPasswordVerify = {
+const forgotPasswordSet = {
   body: Joi.object().keys({
-    otp: Joi.number().required(),
-    email: Joi.string().email().required(),
     password: Joi.string().required(),
+    email: Joi.string().email().required(),
   }),
 };
 const changePassword = {
@@ -55,12 +54,19 @@ const verifyEmail = {
     otp: Joi.number().required(),
   }),
 };
+const verifyForgotPasswordOTP = {
+  body: Joi.object().keys({
+    email: Joi.string().email().required(),
+    otp: Joi.number().required(),
+  }),
+};
 module.exports = {
   register,
   login,
   refreshTokens,
   forgotPassword,
   changePassword,
-  forgotPasswordVerify,
+  forgotPasswordSet,
   verifyEmail,
+  verifyForgotPasswordOTP,
 };
