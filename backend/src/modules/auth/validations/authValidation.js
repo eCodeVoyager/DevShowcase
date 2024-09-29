@@ -35,7 +35,7 @@ const forgotPassword = {
     email: Joi.string().email().required(),
   }),
 };
-const forgotPasswordVerify = {
+const forgotPasswordSet = {
   body: Joi.object().keys({
     password: Joi.string().required(),
     email: Joi.string().email().required(),
@@ -66,7 +66,7 @@ module.exports = {
   refreshTokens,
   forgotPassword,
   changePassword,
-  forgotPasswordVerify,
+  forgotPasswordSet,
   verifyEmail,
   verifyForgotPasswordOTP,
 };
