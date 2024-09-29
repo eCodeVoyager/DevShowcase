@@ -38,13 +38,17 @@ export default function Register() {
         password: values.password,
       });
       if (data?.success) {
-        const sendEmailResponse = await AuthService.sendVerifyOtp(values.email);
+        const sendEmailResponse = await AuthService.sendVerifyOtp({
+          email: values.email,
+        });
         if (sendEmailResponse?.success) {
           toast.success("Registration successful", {
             description:
               "A verification email has been sent to your email address",
           });
-          navigate(routeNames.verify);
+          navigate(routeNames.verify, {
+            state: { email: values.email, originPage: "register" },
+          });
         } else {
           throw new Error(sendEmailResponse?.message || "An error occurred");
         }
@@ -53,9 +57,12 @@ export default function Register() {
       }
     } catch (error) {
       console.log(error);
-      toast.error(error.message || "An error occurred", {
-        description: "Please try again after some time.",
-      });
+      toast.error(
+        error.response?.data.message || error.message || "An error occurred",
+        {
+          description: "Please try again.",
+        }
+      );
     } finally {
       setLoading(false);
     }

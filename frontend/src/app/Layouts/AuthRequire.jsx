@@ -1,5 +1,5 @@
-import { Outlet, Navigate, useLocation } from "react-router-dom";
 import Cookie from "js-cookie";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { routeNames } from "../../routes/route.data";
 const RequireAuth = () => {
   const token = Cookie.get("token");

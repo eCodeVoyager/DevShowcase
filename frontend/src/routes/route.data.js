@@ -6,5 +6,6 @@ export const routeNames = {
   login: "/login",
   register: "/register",
   verify: "/verify",
-  forgotPassword: "/reset-password",
+  forgotPassword: "/forgot-password",
+  forgotSetPassword: "/forgot-set-password",
 };

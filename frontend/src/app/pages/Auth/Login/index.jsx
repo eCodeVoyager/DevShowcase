@@ -13,10 +13,13 @@ import { routeNames } from "../../../../routes/route.data";
 import { useForm, yupResolver } from "@mantine/form";
 import { LoginValidator } from "../../../../utils/validator";
 import { useState } from "react";
-
+import AuthService from "../../../../services/AuthService";
+import Cookie from "js-cookie";
+import { toast } from "sonner";
 export default function AuthenticationImage() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [keepLoggedIn, setKeepLoggedIn] = useState(false);
   const form = useForm({
     mode: "uncontrolled",
     initialValues: {
@@ -25,13 +28,32 @@ export default function AuthenticationImage() {
     },
     validate: yupResolver(LoginValidator),
   });
-  const handleLogin = (values) => {
+  const handleLogin = async (values) => {
     form.validate();
     try {
       setLoading(true);
-      // TODO: Implement login logic
+      const data = await AuthService.login(values);
+      if (data?.success) {
+        toast.success("Login successful", {
+          description: "You are being redirected to the dashboard",
+        });
+        navigate(routeNames.dashboard);
+        if (keepLoggedIn) {
+          Cookie.set("token", data.data.accessToken, { expires: 7 });
+        } else {
+          Cookie.set("token", data.data.accessToken);
+        }
+      } else {
+        throw new Error(data?.message || "An error occurred");
+      }
     } catch (error) {
       console.log(error);
+      toast.error(
+        error.response?.data.message || error.message || "An error occurred",
+        {
+          description: "Please try again.",
+        }
+      );
     } finally {
       setLoading(false);
     }
@@ -66,12 +88,18 @@ export default function AuthenticationImage() {
             Forgot your password?
           </Link>
         </Text>
-        <Checkbox label="Keep me logged in" mt="xl" size="md" />
+        <Checkbox
+          onChange={() => setKeepLoggedIn((pre) => !pre)}
+          label="Keep me logged in"
+          mt="xl"
+          size="md"
+        />
         <Button
           onClick={form.onSubmit((values) => handleLogin(values))}
           fullWidth
           mt="xl"
           size="md"
+          loading={loading}
         >
           Login
         </Button>

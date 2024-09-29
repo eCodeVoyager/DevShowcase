@@ -15,6 +15,7 @@ const instance = axios.create({
 instance.interceptors.request.use(function (config) {
   // Do something before request is sent
   let token = Cookies.get("token");
+  // let token = localStorage.getItem("token");
   return {
     ...config,
     headers: {
