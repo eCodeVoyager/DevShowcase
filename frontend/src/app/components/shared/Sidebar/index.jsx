@@ -15,35 +15,29 @@ import { FaGear } from "react-icons/fa6";
 const mockdata = [
   { label: "Dashboard", icon: LuGaugeCircle },
   {
-    label: "Create new",
+    label: "Projects",
     icon: MdOutlineEventNote,
     initiallyOpened: true,
     links: [
-      { label: "Project", link: "/" },
-      { label: "Forecasts", link: "#" },
-      { label: "Outlook", link: "#" },
-      { label: "Real time", link: "#" },
+      { label: "All Projects", link: "#" },
+      { label: "Create new Project", link: "/" },
     ],
   },
   {
-    label: "Releases",
-    icon: LuGaugeCircle,
+    label: "Settings",
+    icon: FaGear,
     links: [
-      { label: "Upcoming releases", link: "/" },
-      { label: "Previous releases", link: "/" },
-      { label: "Releases schedule", link: "/" },
+      { label: "Profile", link: "/" },
+      { label: "API", link: "/" },
     ],
   },
-  { label: "Analytics", icon: LuGaugeCircle },
-  { label: "Contracts", icon: LuGaugeCircle },
-  { label: "Settings", icon: FaGear },
   {
     label: "Security",
     icon: LuGaugeCircle,
     links: [
-      { label: "Enable 2FA", link: "/" },
+      { label: "Enable 2FA", link: "#" },
       { label: "Change password", link: "/" },
-      { label: "Recovery codes", link: "/" },
+      { label: "Recovery codes", link: "#" },
     ],
   },
 ];
