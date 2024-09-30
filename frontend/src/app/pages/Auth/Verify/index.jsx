@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 export default function OtpVerification() {
-  // FIXME: originPage is not defined error fix
   const { state } = useLocation();
   useEffect(() => {
     if (!state?.email) {
@@ -78,7 +77,7 @@ export default function OtpVerification() {
     <div className={classes.wrapper}>
       <Paper className={classes.form} radius={12} p={30} px={40}>
         <Title order={2} className={classes.title} ta="center" mt="md" mb={50}>
-          {originPage === "forgot-password"
+          {state?.originPage === "forgot-password"
             ? "Reset Password"
             : "Enter OTP to verify your account"}
         </Title>
