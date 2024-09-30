@@ -1,23 +1,14 @@
-import {
-  Image,
-  Container,
-  Title,
-  Text,
-  Button,
-  SimpleGrid,
-} from "@mantine/core";
-import classes from "./NotFoundImage.module.css";
+import { Container, Title, Text, Button, SimpleGrid } from "@mantine/core";
 
 export function NotFoundImage() {
   return (
-    <Container className={classes.root}>
+    <Container className={"h-screen flex items-center justify-center"}>
       <SimpleGrid spacing={{ base: 40, sm: 80 }} cols={{ base: 1, sm: 2 }}>
-        <Image
-          src={"/images/assets/not-found.svg"}
-          className={classes.mobileImage}
-        />
+        <img src={"/images/assets/not-found.svg"} className="md:hidden" />
         <div>
-          <Title className={classes.title}>Something is not right...</Title>
+          <Title size={36} mb={10}>
+            Something is not right...
+          </Title>
           <Text c="dimmed" size="lg">
             Page you are trying to open does not exist. You may have mistyped
             the address, or the page has been moved to another URL. If you think
@@ -27,15 +18,12 @@ export function NotFoundImage() {
             variant="outline"
             size="md"
             mt="xl"
-            className={classes.control}
+            className="!w-full md:!w-auto"
           >
             Get back to home page
           </Button>
         </div>
-        <Image
-          src={"/images/assets/not-found.svg"}
-          className={classes.desktopImage}
-        />
+        <img src={"/images/assets/not-found.svg"} className="hidden md:block" />
       </SimpleGrid>
     </Container>
   );

@@ -1,16 +1,12 @@
-import { Button, Paper, PasswordInput, Title } from "@mantine/core";
+import { Button, PasswordInput } from "@mantine/core";
 import { useForm, yupResolver } from "@mantine/form";
-import Cookie from "js-cookie";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { routeNames } from "../../../../routes/route.data";
 import AuthService from "../../../../services/AuthService";
-import {
-  LoginValidator,
-  SetPasswordValidator,
-} from "../../../../utils/validator";
-import classes from "../Login/AuthenticationImage.module.css";
+import { SetPasswordValidator } from "../../../../utils/validator";
+import AuthUiLayout from "../../../Layouts/AuthUiLayout";
 export default function ResetPassword() {
   const { state } = useLocation();
   useEffect(() => {
@@ -57,37 +53,31 @@ export default function ResetPassword() {
     }
   };
   return (
-    <div className={classes.wrapper}>
-      <Paper className={classes.form} radius={12} p={30}>
-        <Title order={2} className={classes.title} ta="center" mt="md" mb={50}>
-          Set your new password
-        </Title>
-
-        <PasswordInput
-          label="New password"
-          placeholder="* * * * * * * * *"
-          size="md"
-          key={form.key("password")}
-          {...form.getInputProps("password")}
-        />
-        <PasswordInput
-          label="Confirm password"
-          placeholder="* * * * * * * * *"
-          mt="md"
-          size="md"
-          key={form.key("confirmPassword")}
-          {...form.getInputProps("confirmPassword")}
-        />
-        <Button
-          onClick={form.onSubmit((values) => handleSetPassword(values))}
-          fullWidth
-          mt="xl"
-          size="md"
-          loading={loading}
-        >
-          Set Password
-        </Button>
-      </Paper>
-    </div>
+    <AuthUiLayout title={"Set your new password"}>
+      <PasswordInput
+        label="New password"
+        placeholder="* * * * * * * * *"
+        size="md"
+        key={form.key("password")}
+        {...form.getInputProps("password")}
+      />
+      <PasswordInput
+        label="Confirm password"
+        placeholder="* * * * * * * * *"
+        mt="md"
+        size="md"
+        key={form.key("confirmPassword")}
+        {...form.getInputProps("confirmPassword")}
+      />
+      <Button
+        onClick={form.onSubmit((values) => handleSetPassword(values))}
+        fullWidth
+        mt="xl"
+        size="md"
+        loading={loading}
+      >
+        Set Password
+      </Button>
+    </AuthUiLayout>
   );
 }

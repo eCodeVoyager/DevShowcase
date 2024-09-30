@@ -2,12 +2,10 @@ import {
   Box,
   Button,
   Center,
-  Container,
   Group,
   Paper,
   Text,
   TextInput,
-  Title,
 } from "@mantine/core";
 import { useForm, yupResolver } from "@mantine/form";
 import { useState } from "react";
@@ -17,8 +15,7 @@ import { toast } from "sonner";
 import { routeNames } from "../../../../routes/route.data";
 import AuthService from "../../../../services/AuthService";
 import { ResetPasswordValidator } from "../../../../utils/validator";
-import classesTwo from "../Login/AuthenticationImage.module.css";
-import classes from "./ForgotPassword.module.css";
+import AuthUiLayout from "../../../Layouts/AuthUiLayout";
 
 export default function ForgotPassword() {
   const navigate = useNavigate();
@@ -58,47 +55,38 @@ export default function ForgotPassword() {
     }
   };
   return (
-    <div className={classesTwo.wrapper}>
-      <Paper className={classes.form} radius={12} p={30}>
-        <Container size={460} my={30}>
-          <Title className={classes.title} ta="center">
-            Forgot your password?
-          </Title>
-          <Text c="dimmed" fz="sm" ta="center">
-            Enter your email to get a OTP.
-          </Text>
-
-          <Paper withBorder shadow="md" p={30} radius="md" mt="xl">
-            <TextInput
-              label="Your email"
-              placeholder="me@domain.com"
-              required
-              key={form.key("email")}
-              {...form.getInputProps("email")}
-            />
-            <Group justify="space-between" mt="lg" className={classes.controls}>
-              <Link
-                to={routeNames.login}
-                className={classes.control + " text-foreground-muted text-sm"}
-              >
-                <Center inline>
-                  <MdArrowRightAlt size={20} className="-rotate-180" />
-                  <Box ml={5}>Back to the login page</Box>
-                </Center>
-              </Link>
-              <Button
-                onClick={form.onSubmit((values) =>
-                  handleSendVerifyOtpForResetPassword(values)
-                )}
-                loading={loading}
-                className={classes.control}
-              >
-                Reset password
-              </Button>
-            </Group>
-          </Paper>
-        </Container>
+    <AuthUiLayout
+      title={"Forgot your password?"}
+      subTitle={"Enter your email to get a OTP."}
+    >
+      <Paper withBorder shadow="md" p={30} radius="md" mt="xl">
+        <TextInput
+          label="Your email"
+          placeholder="me@domain.com"
+          required
+          key={form.key("email")}
+          {...form.getInputProps("email")}
+        />
+        <Group justify="space-between" mt="lg">
+          <Link
+            to={routeNames.login}
+            className={" text-foreground-muted text-sm"}
+          >
+            <Center inline>
+              <MdArrowRightAlt size={20} className="-rotate-180" />
+              <Box ml={5}>Back to the login page</Box>
+            </Center>
+          </Link>
+          <Button
+            onClick={form.onSubmit((values) =>
+              handleSendVerifyOtpForResetPassword(values)
+            )}
+            loading={loading}
+          >
+            Reset password
+          </Button>
+        </Group>
       </Paper>
-    </div>
+    </AuthUiLayout>
   );
 }

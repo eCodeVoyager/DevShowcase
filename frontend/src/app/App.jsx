@@ -11,14 +11,14 @@ import { NotFoundImage } from "./pages/NotFound";
 import Profile from "./pages/profile";
 import DashboardLayout from "./Layouts/DashboardLayout";
 import ResetPassword from "./pages/Auth/SetPassword";
+import RootLayout from "./Layouts/RootLayout";
 
 const App = () => {
   return (
     <Routes>
       <Route path="/">
         {/* public routes */}
-        <Route path={routeNames.home} element={<Home />} />
-        <Route path={routeNames.profile} element={<Profile />} />
+
         <Route path={routeNames.login} element={<Login />} />
         <Route path={routeNames.register} element={<Register />} />
         <Route path={routeNames.verify} element={<OtpVerification />} />
@@ -28,6 +28,12 @@ const App = () => {
           path={routeNames.forgotSetPassword}
           element={<ResetPassword />}
         />
+
+        <Route element={<RootLayout />}>
+          <Route path={routeNames.home} element={<Home />} />
+          <Route path={routeNames.profile} element={<Profile />} />
+        </Route>
+
         {/* projected routes */}
         <Route element={<RequireAuth />}>
           <Route element={<DashboardLayout />}>
