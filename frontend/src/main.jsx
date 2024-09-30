@@ -11,17 +11,17 @@ import { BrowserRouter } from "react-router-dom";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-      <AuthProvider>
-        <MantineProvider
-          theme={{
-            black: "#252525",
-          }}
-          defaultColorScheme="dark"
-        >
-          <App />
-          <Toaster position="top-center" richColors />
-        </MantineProvider>
-      </AuthProvider>
+      {/* <AuthProvider> */}
+      <MantineProvider
+        theme={{
+          black: "#252525",
+        }}
+        defaultColorScheme="dark"
+      >
+        <App />
+        <Toaster position="top-center" richColors />
+      </MantineProvider>
+      {/* </AuthProvider> */}
     </BrowserRouter>
   </StrictMode>
 );

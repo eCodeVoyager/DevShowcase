@@ -2,7 +2,7 @@ export const routeNames = {
   home: "/",
   welcome: "/welcome",
   dashboard: "/dashboard",
-  profile: "/:userId",
+  profile: "/:username",
   login: "/login",
   register: "/register",
   verify: "/verify",

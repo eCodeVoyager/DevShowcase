@@ -1,25 +1,24 @@
 import {
-  Paper,
-  Title,
-  Text,
-  TextInput,
+  Box,
   Button,
+  Center,
   Container,
   Group,
-  Center,
-  Box,
-  rem,
+  Paper,
+  Text,
+  TextInput,
+  Title,
 } from "@mantine/core";
-import { IconArrowLeft } from "@tabler/icons-react";
-import classes from "./ForgotPassword.module.css";
-import classesTwo from "../Login/AuthenticationImage.module.css";
-import { Link, useNavigate } from "react-router-dom";
-import { routeNames } from "../../../../routes/route.data";
-import { ResetPasswordValidator } from "../../../../utils/validator";
-import { useState } from "react";
 import { useForm, yupResolver } from "@mantine/form";
-import AuthService from "../../../../services/AuthService";
+import { useState } from "react";
+import { MdArrowRightAlt } from "react-icons/md";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { routeNames } from "../../../../routes/route.data";
+import AuthService from "../../../../services/AuthService";
+import { ResetPasswordValidator } from "../../../../utils/validator";
+import classesTwo from "../Login/AuthenticationImage.module.css";
+import classes from "./ForgotPassword.module.css";
 
 export default function ForgotPassword() {
   const navigate = useNavigate();
@@ -83,10 +82,7 @@ export default function ForgotPassword() {
                 className={classes.control + " text-foreground-muted text-sm"}
               >
                 <Center inline>
-                  <IconArrowLeft
-                    style={{ width: rem(12), height: rem(12) }}
-                    stroke={1.5}
-                  />
+                  <MdArrowRightAlt size={20} className="-rotate-180" />
                   <Box ml={5}>Back to the login page</Box>
                 </Center>
               </Link>
