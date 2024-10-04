@@ -1,53 +1,22 @@
-import { Navigate, Outlet, useNavigate } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
-import { routeNames } from "../../routes/route.data";
-import { useEffect } from "react";
-import AuthService from "../../services/AuthService";
-import { toast } from "sonner";
-import Cookie from "js-cookie";
-import { Loader } from "@mantine/core";
+import { Outlet } from "react-router-dom";
+import Sidebar from "../components/shared/Sidebar";
+import Footer from "../components/shared/footer";
 
 const DashboardLayout = () => {
-  const { isAuthenticated, loadUser, logOut, isLoadingUser, setIsLoadingUser } =
-    useAuth();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    (async () => {
-      setIsLoadingUser(true);
-      try {
-        const token = Cookie.get("token");
-        if (token) {
-          const { data } = await AuthService.me();
-          console.log(data);
-          if (Array.isArray(data)) {
-            loadUser(data[0]);
-          } else {
-            loadUser(data);
-          }
-        } else {
-          navigate(routeNames.login);
-          toast.error("Please login to access the dashboard");
-        }
-      } catch (error) {
-        logOut();
-        console.log("Error while fetching user data : ", error);
-      } finally {
-        setIsLoadingUser(false);
-      }
-    })();
-  }, []);
-  if (isLoadingUser) {
-    return (
-      <div className="grid place-items-center min-h-screen">
-        <h2 className="text-4xl font-semibold btn-shine">DevShowcase</h2>
+  return (
+    <div className="flex min-h-screen lg:gap-5">
+      <aside>
+        <Sidebar />
+      </aside>
+      <div className="h-screen  overflow-y-auto">
+        <main>
+          <Outlet />
+        </main>
+        <footer>
+          <Footer />
+        </footer>
       </div>
-    );
-  }
-  return isAuthenticated ? (
-    <Outlet />
-  ) : (
-    <Navigate to={routeNames.login} replace />
+    </div>
   );
 };
 export default DashboardLayout;

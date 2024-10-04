@@ -35,11 +35,11 @@ const App = () => {
         </Route>
 
         {/* projected routes */}
-        <Route element={<RequireAuth />}>
-          <Route element={<DashboardLayout />}>
-            <Route path={routeNames.dashboard} element={<Dashboard />} />
-          </Route>
+        {/* <Route element={<RequireAuth />}> */}
+        <Route element={<DashboardLayout />}>
+          <Route path={routeNames.dashboard} element={<Dashboard />} />
         </Route>
+        {/* </Route> */}
         <Route path="*" element={<NotFoundImage />} />
       </Route>
     </Routes>

@@ -48,11 +48,11 @@ export default function Sidebar() {
   ));
 
   return (
-    <nav className={classes.navbar}>
+    <nav className={classes.navbar + " h-full overflow-y-auto"}>
       <div className={classes.header}>
         <Group justify="space-between">
           <Logo />
-          <Code fw={700}>v3.1.2</Code>
+          <Code fw={700}>v1.0.0</Code>
         </Group>
       </div>
 
