@@ -28,7 +28,7 @@ const mockdata = [
     icon: FaGear,
     links: [
       { label: "Profile", link: "/" },
-      { label: "API", link: "/" },
+      { label: "API Reference", link: "/" },
     ],
   },
   {

@@ -5,10 +5,10 @@ import Footer from "../components/shared/footer";
 const DashboardLayout = () => {
   return (
     <div className="flex min-h-screen lg:gap-5">
-      <aside>
+      <aside className="hidden lg:block">
         <Sidebar />
       </aside>
-      <div className="h-screen  overflow-y-auto">
+      <div className="h-screen  overflow-y-auto flex-1">
         <main>
           <Outlet />
         </main>

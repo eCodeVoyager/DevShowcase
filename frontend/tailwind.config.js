@@ -23,6 +23,9 @@ export default {
         Raleway: ["Raleway", "sans-serif"],
         Syne: ["Syne", "sans-serif"],
       },
+      screens: {
+        lgxl: "1440px",
+      },
     },
   },
   plugins: [],
