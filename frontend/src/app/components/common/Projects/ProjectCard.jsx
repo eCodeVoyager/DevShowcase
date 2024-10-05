@@ -35,7 +35,7 @@ const ProjectCard = () => {
             )}
           </Group>
         </Box>
-        <Box className="my-5 lg:my-0 lg:flex-1 flex justify-end">
+        <Box className="my-5 lg:my-0 lg:flex-1 flex justify-end shrink-0">
           <ImagesSlider images={images} />
         </Box>
       </Group>

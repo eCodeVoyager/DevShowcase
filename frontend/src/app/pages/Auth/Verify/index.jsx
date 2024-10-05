@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { routeNames } from "../../../../routes/route.data";
 import AuthService from "../../../../services/AuthService";
 import AuthUiLayout from "../../../Layouts/AuthUiLayout";
+import { sendForgotPasswordOtp, sendOtp } from "../../../../utils/sendOTP";
 
 export default function OtpVerification() {
   const { state } = useLocation();
@@ -35,6 +36,36 @@ export default function OtpVerification() {
       },
     },
   });
+
+  // Resend OTP
+  const handleResendOtp = async () => {
+    if (!state?.email) return;
+    try {
+      setLoading(true);
+      let data = {};
+      if (state?.originPage === "forgot-password") {
+        data = await sendForgotPasswordOtp(state?.email);
+      } else {
+        data = await sendOtp(state?.email);
+      }
+      if (data?.success) {
+        toast.success(data.message || "OTP sent successfully.");
+      } else {
+        throw new Error(data?.message || "An error occurred");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(
+        error.response?.data.message || error.message || "An error occurred",
+        {
+          description: "Please try again.",
+        }
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleVerifyOTP = async (values) => {
     form.validate();
     try {
@@ -42,12 +73,12 @@ export default function OtpVerification() {
       let data;
       if (state?.originPage === "forgot-password") {
         data = await AuthService.verifyForgotPasswordOtp({
-          email,
+          email: state?.email,
           otp: values.otp,
         });
       } else if (state?.originPage === "register") {
         data = await AuthService.verifyOtpEmail({
-          email,
+          email: state?.email,
           otp: parseInt(values.otp),
         });
       } else {
@@ -55,9 +86,13 @@ export default function OtpVerification() {
       }
       if (data?.success) {
         toast.success(data.message || "OTP verified.");
-        navigate(routeNames.forgotSetPassword, {
-          state: { email },
-        });
+        if (state?.originPage === "forgot-password") {
+          navigate(routeNames.forgotSetPassword, {
+            state: { email: state?.email },
+          });
+        } else {
+          navigate(routeNames.login);
+        }
       } else {
         throw new Error(data?.message || "An error occurred");
       }
@@ -106,7 +141,13 @@ export default function OtpVerification() {
 
       <Text ta="center" mt="md">
         Didn&apos;t receive the OTP?{" "}
-        <Button variant="subtle" color="blue" size="xs">
+        <Button
+          disabled={loading}
+          onClick={handleResendOtp}
+          variant="subtle"
+          color="blue"
+          size="xs"
+        >
           Resend
         </Button>
       </Text>

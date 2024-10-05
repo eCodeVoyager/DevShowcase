@@ -7,6 +7,7 @@ import { routeNames } from "../../../../routes/route.data";
 import AuthService from "../../../../services/AuthService";
 import { RegisterValidator } from "../../../../utils/validator";
 import AuthUiLayout from "../../../Layouts/AuthUiLayout";
+import { sendOtp } from "../../../../utils/sendOTP";
 export default function Register() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -30,9 +31,7 @@ export default function Register() {
         password: values.password,
       });
       if (data?.success) {
-        const sendEmailResponse = await AuthService.sendVerifyOtp({
-          email: values.email,
-        });
+        const sendEmailResponse = await sendOtp(values.email);
         if (sendEmailResponse?.success) {
           toast.success("Registration successful", {
             description:

@@ -1,6 +1,6 @@
 import Cookies from "js-cookie";
 // const BASE_URL = "http://localhost:3000/api/v1";
-const BASE_URL = "https://devshowcase-n5ex.onrender.com/api/v1";
+const BASE_URL = "https://devshowcase.onrender.com/api/v1";
 import axios from "axios";
 const instance = axios.create({
   baseURL: BASE_URL,

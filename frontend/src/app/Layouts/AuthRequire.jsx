@@ -3,13 +3,15 @@ import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { routeNames } from "../../routes/route.data";
 import useAuth from "../hooks/useAuth";
 import { useEffect } from "react";
+import { toast } from "sonner";
+import AuthService from "../../services/AuthService";
 const RequireAuth = () => {
-  const token = Cookie.get("token");
   const location = useLocation();
   const { isAuthenticated, loadUser, logOut, isLoadingUser, setIsLoadingUser } =
     useAuth();
   const navigate = useNavigate();
   useEffect(() => {
+    const token = Cookie.get("token");
     (async () => {
       setIsLoadingUser(true);
       try {
